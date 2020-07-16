@@ -1,0 +1,12 @@
+read_verilog verilog/pwmtop.v
+
+synth -top pwmtop
+
+flatten
+
+dfflibmap -liberty cmos_cells.lib
+abc -liberty cmos_cells.lib
+clean
+
+write_ccode synth.c
+

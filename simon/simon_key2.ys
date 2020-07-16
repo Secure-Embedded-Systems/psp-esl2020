@@ -1,0 +1,12 @@
+# read the verilog
+read_verilog simon_key2.v
+# map to cells of msp432_cells.lib
+synth -top simon_key
+flatten
+dfflibmap -liberty msp432_cells.lib
+abc -liberty msp432_cells.lib
+clean
+# create bitslice code
+write_bitslice simon_key2_bit.v
+# create c code
+write_ccode simon_key2_c.c

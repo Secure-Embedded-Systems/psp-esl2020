@@ -1,0 +1,12 @@
+read_verilog verilog/gcdctl.v verilog/gcddp.v verilog/gcdtop.v
+
+synth -top gcdtop
+
+flatten
+
+dfflibmap -liberty cmos_cells.lib
+abc -liberty cmos_cells.lib
+clean
+
+write_ccode synth.c
+

@@ -1,0 +1,11 @@
+read_verilog cells.v LED64Enc.v 
+
+synth -top LED64Enc -flatten
+
+dfflibmap -liberty msp432_cells.lib
+abc -liberty msp432_cells.lib
+clean
+
+write_verilog synth.v
+write_bitslice synth.slice
+write_ccode synth.c

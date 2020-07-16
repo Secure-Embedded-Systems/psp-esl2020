@@ -1,0 +1,12 @@
+read_verilog Midori64Enc.v cells.v
+
+synth -top Midori64Enc -flatten
+
+dfflibmap -liberty msp432_cells.lib
+abc -liberty msp432_cells.lib
+clean
+
+write_verilog synth.v
+write_bitslice synth.slice
+write_ccode synth.c
+
